@@ -1,0 +1,172 @@
+<!--html>
+<body bgcolor="#f4f7f8">
+<style type="text/css">
+p.serif {
+    font-family: "Lucida Console", Monaco, monospace;
+}
+div.box
+{
+    font-family: "Lucida Console", Monaco, monospace;
+    font-size: 50;
+}
+</style>
+<p class="serif" align="center" > <font size="10"><b>The envelope performance factor(EPF) is: <br></b></font></p>
+<div align='center' class='box'>{% if text %}
+  {{ text }}
+{% endif %}</div>
+
+</body>
+</html-->
+
+
+<!DOCTYPE html>
+<html>
+
+    <head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Trade-off</title>
+        <link href='http://fonts.googleapis.com/css?family=Nunito:400,300' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="../static/tradeoff.css">
+        <link href='https://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
+    <style type="text/css">
+    .li{
+      font-family: 'Lobster', cursive;
+      font-size: 40px;
+    }
+    @media screen and (min-width: 900px) 
+    {
+       form {
+       max-width: 900px;
+       }
+    }  
+    button{
+      width: 50%;
+      margin-left:25%;
+    }
+    input{
+      height: 32px; 
+      padding: 6px;
+      border-radius: 2px;
+    }
+    </style>
+    </head>
+   <!--marquee--><div class="li" align="center" >Building Envelope Trade-off (Non_residential buildings)</div><p style="font-size: 40px;" align="center">Sensitive Analysis</p><!--/marquee-->
+    <body>
+<div class="container">
+<div class="row" >
+
+<form action="http://localhost:5000/analyse" method="post">  
+ <fieldset>       
+     <div class="col-xs-6">
+          <h3><b>Base case values: </b></h3><br>
+          <label>U Factor for wall:</label>
+          <label>{% if text_Uow %}{{ text_Uow }}{% endif %}</label>
+          
+          <label>U Factor for vertical fenestration:</label>
+           <label>{% if text_Uvf %}{{ text_Uvf }}{% endif %}</label> 
+
+          <label>SHGC for vertical fenestration:</label>
+          <label>{% if text_SHGC %}{{ text_SHGC }}{% endif %}</label> 
+
+          <label>U Factor for skylight:</label>
+          <label>{% if text_Usky %}{{ text_Usky }}{% endif %}</label> 
+
+          <label>SHGC for skylight:</label>
+           <label>{% if text_SHGC_sky %}{{ text_SHGC_sky }}{% endif %}</label> 
+
+          <label>U Factor for roof:</label>
+          <label>{% if text_Uroof %}{{ text_Uroof }}{% endif %}</label> 
+
+          <label>U Factor for floor:</label>
+           <label>{% if text_Ufloor %}{{ text_Ufloor }}{% endif %}</label> 
+      
+<h3>envelope performance factor(EPF):{% if base_EPF %}
+  {{ base_EPF }}
+{% endif %}</h3>
+      </div>
+      <div class="col-xs-6">
+         <h3><b>Design case values: </b></h3><br>
+         <label>U Factor for wall:</label>
+           <input style="height: 32px; padding:6px; border-radius:2px " type="text" id="Uwall" name="Uwall" value="{% if text_Uow %}{{ text_Uow }}{% endif %}">
+
+          <label>U Factor for vertical fenestration:</label>
+           <input style="height: 32px; padding:6px; border-radius:2px " type="text" id="Uvf" name="Uvf" value="{% if text_Uvf %}{{ text_Uvf }}{% endif %}">
+
+          <label>SHGC for vertical fenestration:</label>
+           <input style="height: 32px; padding:6px; border-radius:2px " type="text" id="SHGC" name="SHGC" value="{% if text_SHGC %}{{ text_SHGC }}{% endif %}">
+
+          <label>U Factor for skylight:</label>
+           <input style="height: 32px; padding:6px; border-radius:2px " type="text" id="Usky" name="Usky" value = "{% if text_Usky %}{{ text_Usky }}{% endif %}">
+
+          <label>SHGC for skylight:</label>
+           <input style="height: 32px; padding:6px; border-radius:2px " type="text" id="SHGC_sky" name="SHGC_sky" value = "{% if text_SHGC_sky %}{{ text_SHGC_sky }}{% endif %}">
+
+          <label>U Factor for roof:</label>
+           <input style="height: 32px; padding:6px; border-radius:2px " type="text" id="Uroof" name="Uroof" value="{% if text_Uroof %}{{ text_Uroof }}{% endif %}">
+
+          <label>U Factor for floor:</label>
+           <input style="height: 32px; padding:6px; border-radius:2px " type="text" id="Ufloor" name="Ufloor" value="{% if text_Ufloor %}{{ text_Ufloor }}{% endif %}">
+         
+       <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+          <input  type="hidden" id="base_EPF" name="base_EPF" value="{% if base_EPF %}{{ base_EPF }}{% endif %}">    
+          
+          <input  type="hidden" id="zone_orientation" name="zone_orientation" value= "{% if zone_orientation %}{{ zone_orientation }}{% endif %}">
+
+          <input  type="hidden" id="wall_area" name="wall_area" value="{% if wall_area %}{{ wall_area }}{% endif %}">
+
+          <input  type="hidden" id="HC" name="HC" value="{% if HC %}{{ HC }}{% endif %}">
+
+          <input  type="hidden" id="position" name="position" value="{% if position %}{{ position }}{% endif %}">
+
+          <input  type="hidden" id="vf_area" name="vf_area" value="{% if vf_area %}{{ vf_area }}{% endif %}">
+
+          <input  type="hidden" id="length" name="length" value="{% if length %}{{ length }}{% endif %}">
+
+          <input  type="hidden" id="breadth" name="breadth" value="{% if breadth %}{{ breadth }}{% endif %}">
+
+          <input  type="hidden" id="overhang_depth" name="overhang_depth" value=" {{ overhang_depth }}">
+
+          <input  type="hidden" id="overhang_height" name="overhang_height" value="{{ overhang_height }}">
+
+          <input  type="hidden" id="orientation" name="orientation" value="{% if orientation %}{{ orientation }}{% endif %}">
+
+          <input  type="hidden" id="material" name="material" value="{{ material }}">
+
+          <input  type="hidden" id="sky_area" name="sky_area" value="{{ sky_area }}">
+
+          <input  type="hidden" id="sky_depth" name="sky_depth" value="{{ sky_depth }}">
+
+          <input  type="hidden" id="sky_length" name="sky_length" value="{{ sky_length }}">
+
+          <input  type="hidden" id="sky_width" name="sky_width" value="{{ sky_width }}">
+
+          <input  type="hidden" id="roof_area" name="roof_area" value="{% if roof_area %}{{ roof_area }}{% endif %}">
+
+          <input  type="hidden" id="floor_area" name="floor_area" value="{% if floor_area %}{{ floor_area }}{% endif %}">
+
+          <input  type="hidden" id="floor" name="floor" value="{% if floor %}{{ floor }}{% endif %}">
+
+          <input  type="hidden" id="CDD50" name="CDD50" value="{% if CDD50 %}{{ CDD50 }}{% endif %}">
+
+          <input  type="hidden" id="CDD65" name="CDD65" value="{% if CDD65 %}{{ CDD65 }}{% endif %}">
+
+          <input  type="hidden" id="CDH80" name="CDH80" value="{% if CDH80 %}{{ CDH80 }}{% endif %}">
+
+          <input  type="hidden" id="HDD50" name="HDD50" value="{% if HDD50 %}{{ HDD50 }}{% endif %}">
+
+          <input  type="hidden" id="HDD65" name="HDD65" value="{% if HDD65 %}{{ HDD65 }}{% endif %}">
+
+          <input  type="hidden" id="FAF" name="FAF" value="{% if FAF %}{{ FAF }}{% endif %}">
+          
+
+          </div>
+        <button type="submit">Analyse</button>
+        </fieldset>
+  </form>
+  </div>
+</div>
+
+    </body>
+</html>

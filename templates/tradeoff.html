@@ -1,0 +1,191 @@
+ <!DOCTYPE html>
+<html>
+
+    <head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Trade-off</title>
+        <link href='http://fonts.googleapis.com/css?family=Nunito:400,300' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="../static/tradeoff.css">
+        <link href='https://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
+    <style type="text/css">
+    .li{
+      font-family: 'Lobster', cursive;
+      font-size: 40px;
+    }
+    @media screen and (min-width: 900px) 
+    {
+       form {
+       max-width: 900px;
+       }
+    }  
+    button{
+      width: 50%;
+      margin-left:25%;
+    }
+    input{
+      height: 32px; 
+      padding: 6px;
+      border-radius: 2px;
+    }
+    </style>
+    </head>
+   <!--marquee--> <div class="li" align="center" >Building Envelope Trade-off (Non_residential buildings)</div><p style="font-size: 40px;margin-left: 42%">Base case</p><!--/marquee-->
+    <body>
+
+
+<div class="container">
+<div class="row" >
+
+<form action="http://localhost:5000/tradeoff" method="post">  
+ <fieldset>       
+   
+      <div class="col-xs-6">
+
+      <label>Climate Bin:</label>
+          <select id="climate" name="climate">
+            <option>1(A,B)</option>
+            <option>2(A,B)</option>
+            <option>3(C)</option>
+            <option>3(A,B)</option>
+            <option>4(A,B,C)</option>
+            <option>5(A,B,C)</option>
+            <option>6(A,B)</option>
+            <option>7</option>
+            <option>8</option>
+
+          </select>
+
+         <label>U Factor for wall:</label>
+           <input style="height: 32px; padding:6px; border-radius:2px " type="text" id="Uwall" name="Uwall" value="0.5">
+
+          <label>U Factor for vertical fenestration:</label>
+           <input style="height: 32px; padding:6px; border-radius:2px " type="text" id="Uvf" name="Uvf" value="3.3">
+
+          <label>SHGC for vertical fenestration:</label>
+           <input style="height: 32px; padding:6px; border-radius:2px " type="text" id="SHGC" name="SHGC" value="0.25">
+
+          <label>U Factor for skylight:</label>
+           <input style="height: 32px; padding:6px; border-radius:2px " type="text" id="Usky" name="Usky" value = "8">
+
+          <label>SHGC for skylight:</label>
+           <input style="height: 32px; padding:6px; border-radius:2px " type="text" id="SHGC_sky" name="SHGC_sky" value = "0.4">
+
+          <label>U Factor for roof:</label>
+           <input style="height: 32px; padding:6px; border-radius:2px " type="text" id="Uroof" name="Uroof" value="0.27">
+
+          <label>U Factor for floor:</label>
+           <input style="height: 32px; padding:6px; border-radius:2px " type="text" id="Ufloor" name="Ufloor" value="0.4">
+
+            <label>Cooling degree days(base 50F.day):</label>
+           <input style="height: 32px; padding:6px; border-radius:2px " type="text" id="CDD50" name="CDD50" placeholder="Base 50F.day" value="9711.0525">
+
+          <label>Cooling degree days (base 65F.day):</label>
+           <input style="height: 32px; padding:6px; border-radius:2px " type="text" id="CDD65" name="CDD65" placeholder="Base 65F.day" value="4862.2725">
+
+          <label>Cooling degree hours (base 80F.day):</label>
+           <input style="height: 32px; padding:6px; border-radius:2px " type="text" id="CDH80" name="CDH80" placeholder="Base 80F.day" value="38617.5">
+
+          <label>Heating degree days (base 50F.day):</label>
+           <input style="height: 32px; padding:6px; border-radius:2px " type="text" id="HDD50" name="HDD50" placeholder="Base 50F.day" value="1.47">
+
+          <label>Heating degree days (base 65F.day):</label>
+           <input style="height: 32px; padding:6px; border-radius:2px " type="text" id="HDD65" name="HDD65" placeholder="Base 65F.day" value="627.69">
+
+          <label>Floor area factor:</label>
+           <input style="height: 32px; padding:6px; border-radius:2px " type="text" id="FAF" name="FAF" placeholder="1000/CFA,sft">
+          
+      
+      </div>
+      <div class="col-xs-6">
+  
+          <label>Zone Orientation:</label>
+         <select id="zone_orientation" name="zone_orientation">
+            <option>North</option>
+            <option>East</option>
+            <option>South</option>
+            <option>West</option>
+         </select>
+          
+          <label>Gross Wall Area (sft):</label>
+           <input style="height: 32px; padding:6px; border-radius:2px " type="text" id="wall_area" name="wall_area" placeholder="in sft">
+
+          
+          <label>Heat Capacity of wall (Btu/sft.F):</label>
+           <input style="height: 32px; padding:6px; border-radius:2px " type="text" id="HC" name="HC" placeholder="Btu/sft.F">
+
+          <label>Position of insulation in the wall:</label>
+          <select id="position" name="position">
+            <option>Exterior</option>
+            <option>Integral</option>
+            <option>Interior</option>
+          </select>
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+          <label>Vertical fenestration Area (sft):</label>
+           <input style="height: 32px; padding:6px; border-radius:2px " type="text" id="vf_area" name="vf_area" placeholder="in sft">
+
+          <label>Window length (ft):</label>
+           <input style="height: 32px; padding:6px; border-radius:2px " type="text" id="length" name="length" placeholder="in ft">
+
+          <label>Window breadth (ft):</label>
+           <input style="height: 32px; padding:6px; border-radius:2px " type="text" id="breadth" name="breadth" placeholder="in ft">
+
+          <label>Window overhang depth (ft):</label>
+           <input style="height: 32px; padding:6px; border-radius:2px " type="text" id="overhang_depth" name="overhang_depth" placeholder="in ft" value="0">
+
+          <label>Height of overhang from top of window (ft):</label>
+           <input style="height: 32px; padding:6px; border-radius:2px " type="text" id="overhang_height" name="overhang_height" placeholder="in ft" value="0">
+
+          <label>Orientation of window (ft):</label>
+          <select id="orientation" name="orientation">
+            <option value="north">North</option>
+            <option value="non_north">South/East/West</option>
+          </select>
+
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+          <label>Skylight Material</label>
+         <select id="material" name="material">
+            <option value="none">None</option>
+            <option value="glass">Glass</option>
+            <option value="plastic">Plastic</option>
+         </select>
+
+          <label>Skylight Area (sft):</label>
+           <input style="height: 32px; padding:6px; border-radius:2px " type="text" id="sky_area" name="sky_area" placeholder="in sft" value="0">
+
+          <label>Avg depth of skylight well from fenestration to ceiling (ft):</label>
+           <input style="height: 32px; padding:6px; border-radius:2px " type="text" id="sky_depth" name="sky_depth" placeholder="in ft" value = "0">
+
+          <label>Length of skylight well (ft):</label>
+           <input style="height: 32px; padding:6px; border-radius:2px " type="text" id="sky_length" name="sky_length" placeholder="in ft" value = "0">
+          
+          <label>Width of skylight well (ft):</label>
+           <input style="height: 32px; padding:6px; border-radius:2px " type="text" id="sky_width" name="sky_width" placeholder="in ft" value = "0">
+
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+          <label>Gross Roof Area (sft):</label>
+           <input style="height: 32px; padding:6px; border-radius:2px " type="text" id="roof_area" name="roof_area" placeholder="in ft">
+
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+          <label>Gross floor Area (sft):</label>
+           <input style="height: 32px; padding:6px; border-radius:2px " type="text" id="floor_area" name="floor_area" placeholder="in sft">
+
+          <label>Type of floor:</label>
+         <select id="floor" name="floor">
+            <option value="ground_floor">Slab on grade floor</option>
+            <option value="other_floor">Other floor</option>
+         </select>
+
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+
+      </div>
+        <button type="submit">Calculate</button>
+        </fieldset>
+  </form>
+  </div>
+</div>
+
+    </body>
+</html>
+    

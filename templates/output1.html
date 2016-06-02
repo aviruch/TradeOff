@@ -1,0 +1,28 @@
+<html>
+<body bgcolor="#f4f7f8">
+<style type="text/css">
+p.serif {
+    font-family: "Lucida Console", Monaco, monospace;
+    font-size: 20;
+}
+div.box
+{
+    font-family: "Lucida Console", Monaco, monospace;
+    font-size: 30;
+}
+</style>
+
+<p class="serif" align="center" > <b>EPF for Base case is: </b></font></p>
+<div align='center' class='box'>{% if base_EPF %}
+  {{ base_EPF  }}
+{% endif %}</div>
+<p class="serif" align="center" > <b>EPF for Design case is: </b></font></p>
+<div align='center' class='box'>{% if text %}
+  {{ text }}
+{% endif %}</div>
+<p class="serif" align="center" > <b>Savings: </b></font></p>
+<div align='center' class='box'>{% if text %}
+  {{ savings}}
+{% endif %}</div>
+</body>
+</html>
